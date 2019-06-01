@@ -1,18 +1,11 @@
 <template>
     <div>
-        <div v-html="myHtml"></div>
-        <div v-if="showName">
-        <p>{{user.firstNeame}}</p>
-        </div>
-        <div v-else>
-        <p>No puedo mostrar nombre</p>
-        </div>
-        <hr>
-        <ul>
-            <li v-for="task in tasks">
-                {{task.title}}
-            </li>
-        </ul>
+        <!--<input type="text" v-model="user.firstName">
+        <button type="button" v-on:click="saludar(user.firstName)">
+            CLICK
+        </button>
+        <hr> -->
+        <input type="text" v-on:keyup.enter="typedEnter">
     </div>
 </template>
 
@@ -23,7 +16,7 @@ export default {
         return {
             title: 'Hola VueJS',
             user: {
-                firstNeame: 'Pepe',
+                firstName: 'Pepe',
                 lastName: 'Mendez'
             },
             myHtml: '<h3>hola vue</h3>',
@@ -34,6 +27,15 @@ export default {
                 {title: 'jugar'},
                 {title: 'dormir'}
             ]
+        }
+    },
+    methods: {
+        saludar(name){
+            alert('HELLO ' + name);
+        },
+        typedEnter(e){
+            console.log('DIO un enter');
+            
         }
     }
 }
