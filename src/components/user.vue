@@ -3,7 +3,8 @@
         <h1>Users component</h1>
         <ul>
             <li v-for="user in users">
-                {{user.name}} - {{user.email}}
+                {{user.name}} - {{user.email}} 
+                <button v-on:click="deleteUser(user)">X</button>
             </li>
         </ul>
 
@@ -21,31 +22,23 @@
     export default {
         data() {
             return {
-                users:[
-                    {
-                        name: 'Mario',
-                        email: 'mario8a@gmail.com',
-                        contacted: false
-                    },
-                    {
-                        name: 'Vanessa',
-                        email: 'vaneK@gmail.com',
-                        contacted: false
-                    },
-                    {
-                        name: 'Carlos',
-                        email: 'charles@gmail.com',
-                        contacted: true
-                    }
-                ],
+                users:[],
                 newUser: {}
             }
         },
         methods: {
             addUser(e) {
-                console.log('Agregando user');
+                this.users.push(this.newUser);
+                this.newUser = {};
+            },
+            deleteUser(user){
+                this.users.splice(this.users.indexOf(user), 1);
             }
         },
+        created(){
+            this.$http.get('https://jsonplaceholder.typicode.com/users')
+                .then(res => this.users = res.body);
+        }
     }
 </script>
 
