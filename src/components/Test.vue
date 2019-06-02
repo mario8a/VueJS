@@ -1,11 +1,13 @@
 <template>
-    <div>
+    <div class="test">
         <!--<input type="text" v-model="user.firstName">
         <button type="button" v-on:click="saludar(user.firstName)">
             CLICK
         </button>
         <hr> -->
-        <input type="text" v-on:keyup.enter="typedEnter">
+        <!--<input type="text" v-on:keyup.enter="typedEnter"> -->
+
+        {{ msg }}
     </div>
 </template>
 
@@ -37,10 +39,25 @@ export default {
             console.log('DIO un enter');
             
         }
+    },
+    computed: {
+        fullName(){
+            return this.user.firstName + ' ' + this.user.lastName;
+        }
+    },
+    props: {
+        msg: {
+            type: String,
+            default: 'Mensaje por defecto'
+        }
     }
 }
 </script>
 
-<style lang="">
+<style media="screen">
+
+    .test {
+        background-color: green;
+    }
     
 </style>
